@@ -1300,7 +1300,7 @@ function buildPayload(tag) {
   };
 }
 
-// ฟังก์ชันจัดโครงสร้างข้อมูลส่งให้ตรงกับความต้องการของสคริปต์แผ่นงานตัวใหม่เป๊ะๆ
+// ฟังก์ชันจัดระเบียบโครงสร้างชื่อตัวแปรให้ตรงล็อกกับที่ APPSCRIPT2.txt ต้องการเป๊ะๆ (มีเพียงตัวเดียวเท่านั้น)
 function buildPayload(tag) {
   const cfg = EQ_DATA[tag] || {};
   const d = data[tag] || {};
@@ -1308,34 +1308,7 @@ function buildPayload(tag) {
   const etotal = calcETotal(tag);
 
   return {
-    inspect_date:  meta.date || new Date().toISOString().slice(0,10), // วันที่ตรวจ
-    inspect_round: meta.round || '1',                                 // รอบที่ตรวจ
-    plant:         cfg.plant || 'UNKNOWN',                            // โรง (ESP/GSP1)
-    eq_tag:        tag,                                               // รหัสตู้ไฟ
-    inspector:     meta.inspector || 'ไม่ได้ระบุ',                        // ชื่อผู้ตรวจ
-    meter_model:   meta.equip || 'Fluke 1625-2',                      // เครื่องมือวัด
-    rod_count:     cfg.rods || 3,                                     // จำนวนจุดแท่งกราวด์
-    e1_ohm:        d.e1 !== undefined && d.e1 !== '' ? parseFloat(d.e1) : null,
-    e2_ohm:        d.e2 !== undefined && d.e2 !== '' ? parseFloat(d.e2) : null,
-    e3_ohm:        d.e3 !== undefined && d.e3 !== '' ? parseFloat(d.e3) : null,
-    e4_ohm:        d.e4 !== undefined && d.e4 !== '' ? parseFloat(d.e4) : null,
-    e5_ohm:        d.e5 !== undefined && d.e5 !== '' ? parseFloat(d.e5) : null,
-    etotal:        etotal ? parseFloat(etotal) : null,                // ค่าความต้านทานรวม
-    emain:         d.emain !== undefined && d.emain !== '' ? parseFloat(d.emain) : null, // ค่าที่วัดตรง Main
-    remark:        d.remark || '',                                    // หมายเหตุ
-    appVersion:    '2.0'
-  };
-}
-
-// 🛠️ ฟังก์ชันจัดระเบียบโครงสร้างชื่อตัวแปรให้ตรงล็อกกับที่ APPSCRIPT2.txt ต้องการเป๊ะๆ
-function buildPayload(tag) {
-  const cfg = EQ_DATA[tag] || {};
-  const d = data[tag] || {};
-  const meta = getMeta();
-  const etotal = calcETotal(tag);
-
-  return {
-    inspect_date:  meta.date || new Date().toISOString().slice(0,10), // ตรงกับตัวแปรสคริปต์
+    inspect_date:  meta.date || new Date().toISOString().slice(0,10), 
     inspect_round: meta.round || '1',
     plant:         cfg.plant || 'UNKNOWN',
     eq_tag:        tag,
