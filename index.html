@@ -1384,24 +1384,29 @@ async function submitOne(tag) {
 async function submitAll() {
   const meta = getMeta();
   if (!meta.inspector || !meta.date) {
-    showToast('⚠ กรุณาเปิดตู้ใดตู้หนึ่ง เพื่อกรอกชื่อผู้ตรวจและวันที่ก่อน');
+    showToast('⚠ กรุณากรอกชื่อผู้ตรวจและวันที่ในฟอร์มตู้ก่อนส่ง');
     return;
   }
   const tags = Object.keys(EQ_DATA).filter(t =>
     (activePlant === 'ALL' || EQ_DATA[t].plant === activePlant) &&
     getEqStatus(t) !== 'empty'
   );
-  if (!tags.length) { showToast('⚠ ไม่มีข้อมูลใหม่ที่จะส่ง'); return; }
-  if (!confirm(`ยืนยันการส่งข้อมูลจำนวน ${tags.length} รายการไป Google Sheets?`)) return;
+  
+  if (!tags.length) { 
+    showToast('⚠ ไม่มีข้อมูลที่จะส่ง'); 
+    return; 
+  }
+  
+  if (!confirm(`ส่งข้อมูล ${tags.length} รายการไป Google Sheets?`)) return;
 
-  showToast(`⏳ กำลังทยอยส่ง ${tags.length} รายการ...`);
+  showToast(`⏳ กำลังส่ง ${tags.length} รายการ...`);
   let ok = 0;
   for (const tag of tags) {
     try {
       await fetch(SCRIPT_URL, {
-        method:'POST', 
-        mode:'no-cors',
-        headers:{'Content-Type':'application/json'},
+        method: 'POST', 
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(buildPayload(tag))
       });
       const now = new Date().toLocaleTimeString('th-TH');
@@ -1411,32 +1416,6 @@ async function submitAll() {
     } catch(e) {
       console.error(e);
     }
-  }
-  saveLocal();
-  renderList();
-  showToast(`✅ ส่งสำเร็จ ${ok}/${tags.length} รายการ`);
-}
-  const tags = Object.keys(EQ_DATA).filter(t =>
-    (activePlant === 'ALL' || EQ_DATA[t].plant === activePlant) &&
-    getEqStatus(t) !== 'empty'
-  );
-  if (!tags.length) { showToast('⚠ ไม่มีข้อมูลที่จะส่ง'); return; }
-  if (!confirm(`ส่งข้อมูล ${tags.length} รายการไป Google Sheets?`)) return;
-
-  showToast(`⏳ กำลังส่ง ${tags.length} รายการ...`);
-  let ok = 0;
-  for (const tag of tags) {
-    try {
-      await fetch(SCRIPT_URL, {
-        method:'POST', mode:'no-cors',
-        headers:{'Content-Type':'application/json'},
-        body: JSON.stringify(buildPayload(tag))
-      });
-      const now = new Date().toLocaleTimeString('th-TH');
-      if (!data[tag]) data[tag] = {};
-      data[tag]._sent = now;
-      ok++;
-    } catch(e) {}
   }
   saveLocal();
   renderList();
