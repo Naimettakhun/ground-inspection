@@ -1327,6 +1327,33 @@ function buildPayload(tag) {
   };
 }
 
+// 🛠️ ฟังก์ชันจัดระเบียบโครงสร้างชื่อตัวแปรให้ตรงล็อกกับที่ APPSCRIPT2.txt ต้องการเป๊ะๆ
+function buildPayload(tag) {
+  const cfg = EQ_DATA[tag] || {};
+  const d = data[tag] || {};
+  const meta = getMeta();
+  const etotal = calcETotal(tag);
+
+  return {
+    inspect_date:  meta.date || new Date().toISOString().slice(0,10), // ตรงกับตัวแปรสคริปต์
+    inspect_round: meta.round || '1',
+    plant:         cfg.plant || 'UNKNOWN',
+    eq_tag:        tag,
+    inspector:     meta.inspector || 'ไม่ได้ระบุ',
+    meter_model:   meta.equip || 'Fluke 1625-2',
+    rod_count:     cfg.rods || 3,
+    e1_ohm:        d.e1 !== undefined && d.e1 !== '' ? parseFloat(d.e1) : null,
+    e2_ohm:        d.e2 !== undefined && d.e2 !== '' ? parseFloat(d.e2) : null,
+    e3_ohm:        d.e3 !== undefined && d.e3 !== '' ? parseFloat(d.e3) : null,
+    e4_ohm:        d.e4 !== undefined && d.e4 !== '' ? parseFloat(d.e4) : null,
+    e5_ohm:        d.e5 !== undefined && d.e5 !== '' ? parseFloat(d.e5) : null,
+    etotal:        etotal ? parseFloat(etotal) : null,
+    emain:         d.emain !== undefined && d.emain !== '' ? parseFloat(d.emain) : null,
+    remark:        d.remark || '',
+    appVersion:    '2.0'
+  };
+}
+
 async function submitOne(tag) {
   if (!validateMeta()) {
     showToast('⚠ กรุณากรอกชื่อผู้ตรวจและวันที่ก่อน');
