@@ -548,7 +548,7 @@ input[type=number]::-webkit-inner-spin-button { -webkit-appearance:none; }
 // ═══════════════════════════════════════════════════════════
 const LIMIT_ROD   = 5;    // Ω — แต่ละ rod
 const LIMIT_EMAIN = 2;    // Ω — E-MAIN
-const SCRIPT_URL  = 'https://script.google.com/macros/s/AKfycbzEuW2YKCVbGUmED416Wn0h63ZYUI8I_lz9eeNb4QLM_XUuuxHJmupFMvX_O31DGFYQ/exec';
+const SCRIPT_URL  = 'https://script.google.com/macros/s/AKfycbwioaOWrJs3aWCVptXFqLSalAcJdiQ-jyeuq5oc1b4ayhMkCKRLcw_K3yUsnRNmirsn/exec';
 
 // ═══════════════════════════════════════════════════════════
 // ZONE B — EQ DATABASE
@@ -1300,6 +1300,33 @@ function buildPayload(tag) {
   };
 }
 
+// ฟังก์ชันจัดโครงสร้างข้อมูลส่งให้ตรงกับความต้องการของสคริปต์แผ่นงานตัวใหม่เป๊ะๆ
+function buildPayload(tag) {
+  const cfg = EQ_DATA[tag] || {};
+  const d = data[tag] || {};
+  const meta = getMeta();
+  const etotal = calcETotal(tag);
+
+  return {
+    inspect_date:  meta.date || new Date().toISOString().slice(0,10), // วันที่ตรวจ
+    inspect_round: meta.round || '1',                                 // รอบที่ตรวจ
+    plant:         cfg.plant || 'UNKNOWN',                            // โรง (ESP/GSP1)
+    eq_tag:        tag,                                               // รหัสตู้ไฟ
+    inspector:     meta.inspector || 'ไม่ได้ระบุ',                        // ชื่อผู้ตรวจ
+    meter_model:   meta.equip || 'Fluke 1625-2',                      // เครื่องมือวัด
+    rod_count:     cfg.rods || 3,                                     // จำนวนจุดแท่งกราวด์
+    e1_ohm:        d.e1 !== undefined && d.e1 !== '' ? parseFloat(d.e1) : null,
+    e2_ohm:        d.e2 !== undefined && d.e2 !== '' ? parseFloat(d.e2) : null,
+    e3_ohm:        d.e3 !== undefined && d.e3 !== '' ? parseFloat(d.e3) : null,
+    e4_ohm:        d.e4 !== undefined && d.e4 !== '' ? parseFloat(d.e4) : null,
+    e5_ohm:        d.e5 !== undefined && d.e5 !== '' ? parseFloat(d.e5) : null,
+    etotal:        etotal ? parseFloat(etotal) : null,                // ค่าความต้านทานรวม
+    emain:         d.emain !== undefined && d.emain !== '' ? parseFloat(d.emain) : null, // ค่าที่วัดตรง Main
+    remark:        d.remark || '',                                    // หมายเหตุ
+    appVersion:    '2.0'
+  };
+}
+
 async function submitOne(tag) {
   if (!validateMeta()) {
     showToast('⚠ กรุณากรอกชื่อผู้ตรวจและวันที่ก่อน');
@@ -1307,10 +1334,11 @@ async function submitOne(tag) {
     return;
   }
   saveMeta();
-  setBanner('sending', '⏳ กำลังส่งข้อมูล...');
+  setBanner('sending', '⏳ กำลังส่งข้อมูลเข้าสู่ระบบคลาวด์...');
   try {
     await fetch(SCRIPT_URL, {
-      method: 'POST', mode: 'no-cors',
+      method: 'POST', 
+      mode: 'no-cors',
       headers: {'Content-Type':'application/json'},
       body: JSON.stringify(buildPayload(tag))
     });
@@ -1329,9 +1357,38 @@ async function submitOne(tag) {
 async function submitAll() {
   const meta = getMeta();
   if (!meta.inspector || !meta.date) {
-    showToast('⚠ กรุณาเปิด EQ ใด EQ หนึ่ง แล้วกรอกชื่อผู้ตรวจ+วันที่ก่อน');
+    showToast('⚠ กรุณาเปิดตู้ใดตู้หนึ่ง เพื่อกรอกชื่อผู้ตรวจและวันที่ก่อน');
     return;
   }
+  const tags = Object.keys(EQ_DATA).filter(t =>
+    (activePlant === 'ALL' || EQ_DATA[t].plant === activePlant) &&
+    getEqStatus(t) !== 'empty'
+  );
+  if (!tags.length) { showToast('⚠ ไม่มีข้อมูลใหม่ที่จะส่ง'); return; }
+  if (!confirm(`ยืนยันการส่งข้อมูลจำนวน ${tags.length} รายการไป Google Sheets?`)) return;
+
+  showToast(`⏳ กำลังทยอยส่ง ${tags.length} รายการ...`);
+  let ok = 0;
+  for (const tag of tags) {
+    try {
+      await fetch(SCRIPT_URL, {
+        method:'POST', 
+        mode:'no-cors',
+        headers:{'Content-Type':'application/json'},
+        body: JSON.stringify(buildPayload(tag))
+      });
+      const now = new Date().toLocaleTimeString('th-TH');
+      if (!data[tag]) data[tag] = {};
+      data[tag]._sent = now;
+      ok++;
+    } catch(e) {
+      console.error(e);
+    }
+  }
+  saveLocal();
+  renderList();
+  showToast(`✅ ส่งสำเร็จ ${ok}/${tags.length} รายการ`);
+}
   const tags = Object.keys(EQ_DATA).filter(t =>
     (activePlant === 'ALL' || EQ_DATA[t].plant === activePlant) &&
     getEqStatus(t) !== 'empty'
