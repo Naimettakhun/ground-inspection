@@ -1278,29 +1278,7 @@ function validateMeta() {
 // ═══════════════════════════════════════════════════════════
 // ZONE L — SUBMIT TO GOOGLE SHEETS
 // ═══════════════════════════════════════════════════════════
-function buildPayload(tag) {
-  const cfg  = EQ_DATA[tag];
-  const d    = data[tag] || {};
-  const meta = getMeta();
-  const etotal = calcETotal(tag);
-  return {
-    tag,
-    plant:     cfg.plant,
-    rods:      cfg.rods,
-    inspector: meta.inspector || '',
-    date:      meta.date      || '',
-    round:     meta.round     || '',
-    equip:     meta.equip     || '',
-    e1: d.e1 ?? '', e2: d.e2 ?? '', e3: d.e3 ?? '',
-    e4: d.e4 ?? '', e5: d.e5 ?? '',
-    emain:  d.emain  || '',
-    etotal: etotal   || '',
-    result: getResultText(tag),
-    remark: d.remark || '',
-  };
-}
-
-// ฟังก์ชันจัดระเบียบโครงสร้างชื่อตัวแปรให้ตรงล็อกกับที่ APPSCRIPT2.txt ต้องการเป๊ะๆ (มีเพียงตัวเดียวเท่านั้น)
+// buildPayload — ส่ง key ให้ตรงกับที่ Apps Script รับใน doPost()
 function buildPayload(tag) {
   const cfg = EQ_DATA[tag] || {};
   const d = data[tag] || {};
@@ -1308,22 +1286,20 @@ function buildPayload(tag) {
   const etotal = calcETotal(tag);
 
   return {
-    inspect_date:  meta.date || new Date().toISOString().slice(0,10), 
-    inspect_round: meta.round || '1',
-    plant:         cfg.plant || 'UNKNOWN',
-    eq_tag:        tag,
-    inspector:     meta.inspector || 'ไม่ได้ระบุ',
-    meter_model:   meta.equip || 'Fluke 1625-2',
-    rod_count:     cfg.rods || 3,
-    e1_ohm:        d.e1 !== undefined && d.e1 !== '' ? parseFloat(d.e1) : null,
-    e2_ohm:        d.e2 !== undefined && d.e2 !== '' ? parseFloat(d.e2) : null,
-    e3_ohm:        d.e3 !== undefined && d.e3 !== '' ? parseFloat(d.e3) : null,
-    e4_ohm:        d.e4 !== undefined && d.e4 !== '' ? parseFloat(d.e4) : null,
-    e5_ohm:        d.e5 !== undefined && d.e5 !== '' ? parseFloat(d.e5) : null,
-    etotal:        etotal ? parseFloat(etotal) : null,
-    emain:         d.emain !== undefined && d.emain !== '' ? parseFloat(d.emain) : null,
-    remark:        d.remark || '',
-    appVersion:    '2.0'
+    tag:       tag,
+    plant:     cfg.plant   || 'UNKNOWN',
+    date:      meta.date   || new Date().toISOString().slice(0,10),
+    round:     meta.round  || '',
+    inspector: meta.inspector || '',
+    equip:     meta.equip  || '',
+    e1:        d.e1 !== undefined && d.e1 !== '' ? parseFloat(d.e1) : '',
+    e2:        d.e2 !== undefined && d.e2 !== '' ? parseFloat(d.e2) : '',
+    e3:        d.e3 !== undefined && d.e3 !== '' ? parseFloat(d.e3) : '',
+    e4:        d.e4 !== undefined && d.e4 !== '' ? parseFloat(d.e4) : '',
+    e5:        d.e5 !== undefined && d.e5 !== '' ? parseFloat(d.e5) : '',
+    etotal:    etotal !== '' && etotal != null ? parseFloat(etotal) : '',
+    emain:     d.emain !== undefined && d.emain !== '' ? parseFloat(d.emain) : '',
+    remark:    d.remark || '',
   };
 }
 
