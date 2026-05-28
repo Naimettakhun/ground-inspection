@@ -7,9 +7,6 @@
 <style>
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=Sarabun:wght@300;400;500;600;700&display=swap');
 
-/* ═══════════════════════════════════════════
-   TOKENS
-   ═══════════════════════════════════════════ */
 :root {
   --font-mono: 'IBM Plex Mono', monospace;
   --font-sans: 'Sarabun', sans-serif;
@@ -29,9 +26,6 @@
   --shadow: 0 1px 4px rgba(0,0,0,0.4);
 }
 
-/* ═══════════════════════════════════════════
-   RESET
-   ═══════════════════════════════════════════ */
 *,*::before,*::after { box-sizing:border-box; margin:0; padding:0; }
 html,body { height:100%; background:var(--bg); color:var(--text); font-family:var(--font-sans); }
 input[type=number]::-webkit-inner-spin-button { -webkit-appearance:none; }
@@ -39,14 +33,8 @@ input[type=number]::-webkit-inner-spin-button { -webkit-appearance:none; }
 ::-webkit-scrollbar-track { background:transparent; }
 ::-webkit-scrollbar-thumb { background:var(--border); border-radius:2px; }
 
-/* ═══════════════════════════════════════════
-   SHELL
-   ═══════════════════════════════════════════ */
 .app { display:flex; flex-direction:column; height:100dvh; overflow:hidden; }
 
-/* ═══════════════════════════════════════════
-   HEADER
-   ═══════════════════════════════════════════ */
 .header {
   display:flex; align-items:center; gap:10px;
   padding:10px 16px; background:var(--surface);
@@ -77,9 +65,6 @@ input[type=number]::-webkit-inner-spin-button { -webkit-appearance:none; }
 }
 .btn-submit-all:active { opacity:0.8; }
 
-/* ═══════════════════════════════════════════
-   PLANT SELECTOR
-   ═══════════════════════════════════════════ */
 .plant-bar {
   background:var(--surface); border-bottom:1px solid var(--border);
   padding:8px 12px; flex-shrink:0; display:flex; gap:6px;
@@ -100,9 +85,6 @@ input[type=number]::-webkit-inner-spin-button { -webkit-appearance:none; }
 }
 .plant-btn:active { opacity:0.8; }
 
-/* ═══════════════════════════════════════════
-   FILTER + SEARCH
-   ═══════════════════════════════════════════ */
 .toolbar {
   padding:8px 12px; flex-shrink:0;
   display:flex; flex-direction:column; gap:8px;
@@ -126,9 +108,6 @@ input[type=number]::-webkit-inner-spin-button { -webkit-appearance:none; }
 }
 .filter-btn.active { background:var(--teal); border-color:var(--teal); color:#fff; }
 
-/* ═══════════════════════════════════════════
-   STATS
-   ═══════════════════════════════════════════ */
 .stats-bar {
   display:grid; grid-template-columns:repeat(4,1fr);
   gap:1px; background:var(--border); flex-shrink:0;
@@ -138,9 +117,6 @@ input[type=number]::-webkit-inner-spin-button { -webkit-appearance:none; }
 .stat-val  { font-size:17px; font-weight:700; font-family:var(--font-mono); }
 .stat-lbl  { font-size:9px; color:var(--dim); margin-top:1px; font-weight:600; letter-spacing:0.03em; }
 
-/* ═══════════════════════════════════════════
-   EQ LIST
-   ═══════════════════════════════════════════ */
 .eq-list { flex:1; overflow-y:auto; padding:10px; display:flex; flex-direction:column; gap:8px; }
 
 .eq-card {
@@ -171,12 +147,8 @@ input[type=number]::-webkit-inner-spin-button { -webkit-appearance:none; }
 
 .eq-summary { text-align:right; flex-shrink:0; }
 .eq-etotal  { font-family:var(--font-mono); font-size:13px; font-weight:700; }
-.eq-emain   { font-family:var(--font-mono); font-size:10px; color:var(--dim); }
 .eq-sent    { font-size:9px; color:var(--green); margin-top:2px; }
 
-/* ═══════════════════════════════════════════
-   MODAL (BOTTOM SHEET)
-   ═══════════════════════════════════════════ */
 .modal-overlay {
   position:fixed; inset:0; z-index:100;
   background:rgba(0,0,0,0.45); display:none; align-items:flex-end;
@@ -209,18 +181,12 @@ input[type=number]::-webkit-inner-spin-button { -webkit-appearance:none; }
 }
 .modal-body { flex:1; overflow-y:auto; padding:14px; display:flex; flex-direction:column; gap:14px; }
 
-/* ═══════════════════════════════════════════
-   SECTION TITLE
-   ═══════════════════════════════════════════ */
 .section-title {
   font-size:10px; color:var(--teal); text-transform:uppercase;
   letter-spacing:0.1em; font-weight:700; padding-bottom:6px;
   border-bottom:1px solid var(--border);
 }
 
-/* ═══════════════════════════════════════════
-   INSPECTOR FORM (บังคับกรอก)
-   ═══════════════════════════════════════════ */
 .inspector-form {
   background:linear-gradient(135deg,rgba(2,132,199,0.05),rgba(37,99,235,0.04));
   border:1.5px solid rgba(2,132,199,0.2); border-radius:var(--radius);
@@ -246,9 +212,6 @@ input[type=number]::-webkit-inner-spin-button { -webkit-appearance:none; }
 .form-err { font-size:10px; color:var(--red); display:none; }
 .form-err.show { display:block; }
 
-/* ═══════════════════════════════════════════
-   PHOTO + PINS
-   ═══════════════════════════════════════════ */
 .photo-zone {
   position: relative; 
   border-radius: var(--radius); 
@@ -259,12 +222,10 @@ input[type=number]::-webkit-inner-spin-button { -webkit-appearance:none; }
   min-height: 400px;
   touch-action: none;        
   user-select: none;
-  display: flex;             /* ดันภาพรวมทั้งหมดให้อยู่กึ่งกลางกล่องสีดำ */
+  display: flex;
   align-items: center;       
   justify-content: center;   
 }
-
-/* กล่องชั้นในที่จะบีบตัวเองให้กว้างยาวเท่ากับเนื้อรูปภาพจริงพอดีเป๊ะ */
 .photo-container {
   position: relative;
   display: inline-block;
@@ -272,7 +233,6 @@ input[type=number]::-webkit-inner-spin-button { -webkit-appearance:none; }
   max-height: 100%;
   transform-origin: center center;
 }
-
 .photo-container img {
   display: block;
   width: 100%;
@@ -309,17 +269,8 @@ input[type=number]::-webkit-inner-spin-button { -webkit-appearance:none; }
   background: rgba(0,0,0,0.65); 
   color: #fff;
   transition: transform 0.1s;
-  flex-shrink: 0;           /* ล็อกความกว้างวงกลมไม่ให้โดนตัวหนังสือยาวๆ ดันเบี้ยว */
+  flex-shrink: 0;
   box-sizing: border-box; 
-}
-
-/* หากตัวอักษรข้างในยาวเกิน 2 ตัว (เช่น E-MAIN) จะย่อขนาดฟอนต์ให้เล็กลงอัตโนมัติเพื่อให้ขนาดวงกลมเท่าเดิม */
-.pin-circle:not(:empty) {
-  font-size: 8px; 
-}
-.pin-circle:has([style*="color"]), 
-.pin-circle {
-  font-size: 10px;
 }
 .pin:active .pin-circle { transform:scale(0.88); }
 .pin-circle.empty { border-color:rgba(255,255,255,0.5); }
@@ -333,9 +284,6 @@ input[type=number]::-webkit-inner-spin-button { -webkit-appearance:none; }
   pointer-events:none; font-weight:600;
 }
 
-/* ═══════════════════════════════════════════
-   E INPUT GRID
-   ═══════════════════════════════════════════ */
 .e-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(130px,1fr)); gap:8px; }
 .e-cell {
   background:var(--surface); border:2px solid var(--border);
@@ -367,17 +315,8 @@ input[type=number]::-webkit-inner-spin-button { -webkit-appearance:none; }
 .e-input.warn { color:var(--yellow); }
 .e-input.bad  { color:var(--red); }
 .e-unit { font-size:10px; color:var(--dim); margin-top:3px; font-weight:600; }
-.emain-cell {
-  border-color:var(--blue) !important;
-  background:linear-gradient(135deg,rgba(2,132,199,0.05),rgba(37,99,235,0.05));
-}
-[data-theme="dark"] .emain-cell { background:rgba(96,165,250,0.07); }
-.emain-cell .e-badge { background:var(--blue); }
 
-/* ═══════════════════════════════════════════
-   RESULT ROW
-   ═══════════════════════════════════════════ */
-.result-row { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+.result-row { display:grid; grid-template-columns:1fr; gap:8px; }
 .result-box {
   background:var(--surface); border:1.5px solid var(--border);
   border-radius:var(--radius); padding:12px 14px; box-shadow:var(--shadow);
@@ -389,9 +328,6 @@ input[type=number]::-webkit-inner-spin-button { -webkit-appearance:none; }
 .result-fail  { color:var(--red); }
 .result-empty { color:var(--border); }
 
-/* ═══════════════════════════════════════════
-   VERDICT BOX
-   ═══════════════════════════════════════════ */
 .verdict-box {
   border-radius:var(--radius); padding:14px 16px;
   display:flex; align-items:center; gap:12px;
@@ -406,9 +342,6 @@ input[type=number]::-webkit-inner-spin-button { -webkit-appearance:none; }
 .verdict-label { font-size:16px; font-weight:700; }
 .verdict-sub   { font-size:11px; margin-top:2px; opacity:0.8; }
 
-/* ═══════════════════════════════════════════
-   REMARK
-   ═══════════════════════════════════════════ */
 .remark-input {
   width:100%; background:var(--surface); border:1.5px solid var(--border);
   color:var(--text); border-radius:var(--radius-sm); padding:10px 12px;
@@ -417,9 +350,6 @@ input[type=number]::-webkit-inner-spin-button { -webkit-appearance:none; }
 }
 .remark-input:focus { border-color:var(--teal); }
 
-/* ═══════════════════════════════════════════
-   ACTION BUTTONS
-   ═══════════════════════════════════════════ */
 .action-row { display:flex; gap:8px; }
 .btn {
   flex:1; padding:14px; border-radius:var(--radius); border:none;
@@ -430,9 +360,6 @@ input[type=number]::-webkit-inner-spin-button { -webkit-appearance:none; }
 .btn-clear   { background:var(--surface2); border:1.5px solid var(--border); color:var(--red); flex:none; padding:14px 18px; }
 .btn:active  { opacity:0.8; }
 
-/* ═══════════════════════════════════════════
-   SEND STATUS BANNER
-   ═══════════════════════════════════════════ */
 .send-banner {
   border-radius:var(--radius-sm); padding:10px 14px;
   font-size:12px; font-weight:600; text-align:center;
@@ -442,9 +369,6 @@ input[type=number]::-webkit-inner-spin-button { -webkit-appearance:none; }
 .send-banner.success { display:block; background:#f0fdf4; color:#166534; border:1px solid #86efac; }
 .send-banner.error   { display:block; background:#fef2f2; color:#991b1b; border:1px solid #fca5a5; }
 
-/* ═══════════════════════════════════════════
-   TOAST
-   ═══════════════════════════════════════════ */
 .toast {
   position:fixed; bottom:24px; left:50%; transform:translateX(-50%) translateY(80px);
   background:#111827; color:#fff; border-radius:24px;
@@ -458,7 +382,6 @@ input[type=number]::-webkit-inner-spin-button { -webkit-appearance:none; }
 <body>
 <div class="app">
 
-  <!-- ═══ HEADER ═══ -->
   <div class="header">
     <div class="header-logo">⚡</div>
     <div>
@@ -472,7 +395,6 @@ input[type=number]::-webkit-inner-spin-button { -webkit-appearance:none; }
     </div>
   </div>
 
-  <!-- ═══ PLANT SELECTOR ═══ -->
   <div class="plant-bar">
     <span class="plant-label">โรง:</span>
     <button class="plant-btn active" onclick="selectPlant('ESP',this)">ESP</button>
@@ -486,7 +408,6 @@ input[type=number]::-webkit-inner-spin-button { -webkit-appearance:none; }
     <button class="plant-btn" onclick="selectPlant('ALL',this)">ทั้งหมด</button>
   </div>
 
-  <!-- ═══ TOOLBAR ═══ -->
   <div class="toolbar">
     <div class="search-row">
       <input class="search-input" type="text" id="searchInput" placeholder="🔍 ค้นหา EQ tag..." oninput="renderList()">
@@ -500,7 +421,6 @@ input[type=number]::-webkit-inner-spin-button { -webkit-appearance:none; }
     </div>
   </div>
 
-  <!-- ═══ STATS ═══ -->
   <div class="stats-bar">
     <div class="stat-cell">
       <div class="stat-val" id="statTotal">0</div>
@@ -520,11 +440,9 @@ input[type=number]::-webkit-inner-spin-button { -webkit-appearance:none; }
     </div>
   </div>
 
-  <!-- ═══ LIST ═══ -->
   <div class="eq-list" id="eqList"></div>
 </div>
 
-<!-- ═══ DETAIL MODAL ═══ -->
 <div class="modal-overlay" id="modalOverlay" onclick="handleOverlayClick(event)">
   <div class="modal">
     <div class="modal-handle"></div>
@@ -546,19 +464,14 @@ input[type=number]::-webkit-inner-spin-button { -webkit-appearance:none; }
 // ═══════════════════════════════════════════════════════════
 // ZONE A — CONFIG
 // ═══════════════════════════════════════════════════════════
-const LIMIT_ROD   = 5;    // Ω — แต่ละ rod
-const LIMIT_EMAIN = 2;    // Ω — E-MAIN
-const SCRIPT_URL  = 'https://script.google.com/macros/s/AKfycbwioaOWrJs3aWCVptXFqLSalAcJdiQ-jyeuq5oc1b4ayhMkCKRLcw_K3yUsnRNmirsn/exec';
+const LIMIT_ROD  = 5;   // Ω แต่ละ rod
+const LIMIT_ETOT = 2;   // Ω E-Total
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwioaOWrJs3aWCVptXFqLSalAcJdiQ-jyeuq5oc1b4ayhMkCKRLcw_K3yUsnRNmirsn/exec';
 
 // ═══════════════════════════════════════════════════════════
 // ZONE B — EQ DATABASE
-// plant: ชื่อโรง | rods: จำนวนจุดวัด
-// photo: 'photos/ชื่อไฟล์.jpg' หรือ null
-// pins: [{eid:'e1', x:50, y:40, label:'E1'}] — % จากมุมบนซ้าย
 // ═══════════════════════════════════════════════════════════
 const EQ_DATA = {
-
-  // ──────────── ESP ────────────
   '3208-ES-001E-A': { plant:'ESP', rods:3, desc:'Ground Rod 3 จุด',
     photo:'photos/3208-ES-001E-A.png',
     pins:[{eid:'e1',x:42,y:65,label:'E1'},{eid:'e2',x:47,y:70,label:'E2'},{eid:'e3',x:52,y:65,label:'E3'}] },
@@ -568,148 +481,69 @@ const EQ_DATA = {
   '3208-ES-001E-C': { plant:'ESP', rods:3, desc:'Ground Rod 3 จุด',
     photo:'photos/3208-ES-001E-C.png',
     pins:[{eid:'e1',x:42,y:68,label:'E1'},{eid:'e2',x:51,y:70,label:'E2'},{eid:'e3',x:61,y:68,label:'E3'}] },
-  '3208-ES-001E-D': { plant:'ESP', rods:3, desc:'Ground Rod 3 จุด', 
+  '3208-ES-001E-D': { plant:'ESP', rods:3, desc:'Ground Rod 3 จุด',
     photo:'photos/3208-ES-001E-D.png',
     pins:[{eid:'e1',x:33,y:68,label:'E1'},{eid:'e2',x:45,y:70,label:'E2'},{eid:'e3',x:59,y:68,label:'E3'}] },
   '3208-ES-005I':   { plant:'ESP', rods:4, desc:'Ground Rod 4 จุด',
     photo:'photos/3208-ES-005I.png',
-    pins:[{eid:'e1',x:33,y:68,label:'E1'},
-          {eid:'e2',x:45,y:70,label:'E2'},
-          {eid:'e3',x:59,y:68,label:'E3'},
-          {eid:'e4',x:50,y:63,label:'E4'}] },
-  '3208-ES-006I':   { plant:'ESP', rods:4, desc:'Ground Rod 4 จุด', 
-    photo:'photos/3208-ES-006I.png', 
-    pins:[{eid:'e1',x:33,y:68,label:'E1'},
-          {eid:'e2',x:45,y:70,label:'E2'},
-          {eid:'e3',x:59,y:68,label:'E3'},
-          {eid:'e4',x:50,y:63,label:'E4'}] },
-  '3208-ES-007I':   { plant:'ESP', rods:4, desc:'Ground Rod 4 จุด', 
-    photo:'photos/3208-ES-007I.png', 
-    pins:[{eid:'e1',x:33,y:68,label:'E1'},
-          {eid:'e2',x:45,y:70,label:'E2'},
-          {eid:'e3',x:59,y:68,label:'E3'},
-          {eid:'e4',x:50,y:63,label:'E4'}] },
-  '3208-ES-004L':   { plant:'ESP', rods:4, desc:'Ground Rod 4 จุด', 
-    photo:'photos/3208-ES-004L.png', 
-    pins:[{eid:'e1',x:33,y:68,label:'E1'},
-          {eid:'e2',x:45,y:70,label:'E2'},
-          {eid:'e3',x:59,y:68,label:'E3'},
-          {eid:'e4',x:50,y:63,label:'E4'}] },
+    pins:[{eid:'e1',x:33,y:68,label:'E1'},{eid:'e2',x:45,y:70,label:'E2'},{eid:'e3',x:59,y:68,label:'E3'},{eid:'e4',x:50,y:63,label:'E4'}] },
+  '3208-ES-006I':   { plant:'ESP', rods:4, desc:'Ground Rod 4 จุด',
+    photo:'photos/3208-ES-006I.png',
+    pins:[{eid:'e1',x:33,y:68,label:'E1'},{eid:'e2',x:45,y:70,label:'E2'},{eid:'e3',x:59,y:68,label:'E3'},{eid:'e4',x:50,y:63,label:'E4'}] },
+  '3208-ES-007I':   { plant:'ESP', rods:4, desc:'Ground Rod 4 จุด',
+    photo:'photos/3208-ES-007I.png',
+    pins:[{eid:'e1',x:33,y:68,label:'E1'},{eid:'e2',x:45,y:70,label:'E2'},{eid:'e3',x:59,y:68,label:'E3'},{eid:'e4',x:50,y:63,label:'E4'}] },
+  '3208-ES-004L':   { plant:'ESP', rods:4, desc:'Ground Rod 4 จุด',
+    photo:'photos/3208-ES-004L.png',
+    pins:[{eid:'e1',x:33,y:68,label:'E1'},{eid:'e2',x:45,y:70,label:'E2'},{eid:'e3',x:59,y:68,label:'E3'},{eid:'e4',x:50,y:63,label:'E4'}] },
   '3208-ES-002E':   { plant:'ESP', rods:5, desc:'Ground Rod 5 จุด',
     photo:'photos/3208-ES-002E.png',
-    pins:[{eid:'e1',x:35,y:72,label:'E1'},
-          {eid:'e2',x:41,y:63,label:'E2'},
-          {eid:'e3',x:45,y:72,label:'E3'},
-          {eid:'e4',x:50,y:63,label:'E4'},
-          {eid:'e5',x:53,y:72,label:'E5'}] },
-  '3208-ES-003L':   { plant:'ESP', rods:4, desc:'Ground Rod 4 จุด', 
-    photo:'photos/3208-ES-003L.png',     
-    pins:[{eid:'e1',x:33,y:68,label:'E1'},
-          {eid:'e2',x:45,y:70,label:'E2'},
-          {eid:'e3',x:59,y:68,label:'E3'},
-          {eid:'e4',x:50,y:63,label:'E4'}] },
-  '3208-ES-013E-1': { plant:'ESP', rods:4, desc:'Ground Rod 4 จุด', photo:'photos/3208-ES-013E-1.jpg', 
-    pins:[{eid:'e1',x:35,y:72,label:'E1'},
-          {eid:'e2',x:41,y:63,label:'E2'},
-          {eid:'e3',x:45,y:72,label:'E3'},
-          {eid:'e4',x:50,y:63,label:'E4'} ] },
-  '3208-ES-013E-2': { plant:'ESP', rods:4, desc:'Ground Rod 4 จุด', photo:'photos/3208-ES-013E-2.png', //same photo
-    pins:[{eid:'e1',x:35,y:72,label:'E1'},
-          {eid:'e2',x:41,y:63,label:'E2'},
-          {eid:'e3',x:45,y:72,label:'E3'},
-          {eid:'e4',x:50,y:63,label:'E4'} ] },
-  '3208-ES-013E-3': { plant:'ESP', rods:2, desc:'Ground Rod 2 จุด', photo:'photos/3208-ES-013E-3.png', //same photo
-    pins:[{eid:'e1',x:35,y:72,label:'E1'},
-          {eid:'e2',x:41,y:63,label:'E2'},] },
-  '3228-ES-001E-E': { plant:'ESP', rods:3, desc:'Ground Rod 3 จุด', 
-    photo:'photos/3228-ES-001E-E.png', 
-    pins:[{eid:'e1',x:35,y:72,label:'E1'},
-          {eid:'e2',x:41,y:63,label:'E2'},
-          {eid:'e3',x:45,y:72,label:'E3'},] },
-  '3228-ES-001E-F': { plant:'ESP', rods:3, desc:'Ground Rod 3 จุด', 
-    photo:'photos/3228-ES-001E-F.png',  //same photo
-    pins:[{eid:'e1',x:35,y:72,label:'E1'},
-          {eid:'e2',x:41,y:63,label:'E2'},
-          {eid:'e3',x:45,y:72,label:'E3'},] },
-  '3218-ES-014E':   { plant:'ESP', rods:4, desc:'Ground Rod 4 จุด', photo:'photos/3218-ES-014E.;png',    
-    pins:[{eid:'e1',x:35,y:72,label:'E1'},
-          {eid:'e2',x:41,y:63,label:'E2'},
-          {eid:'e3',x:45,y:72,label:'E3'},
-          {eid:'e4',x:50,y:63,label:'E4'} ] },
+    pins:[{eid:'e1',x:35,y:72,label:'E1'},{eid:'e2',x:41,y:63,label:'E2'},{eid:'e3',x:45,y:72,label:'E3'},{eid:'e4',x:50,y:63,label:'E4'},{eid:'e5',x:53,y:72,label:'E5'}] },
+  '3208-ES-003L':   { plant:'ESP', rods:4, desc:'Ground Rod 4 จุด',
+    photo:'photos/3208-ES-003L.png',
+    pins:[{eid:'e1',x:33,y:68,label:'E1'},{eid:'e2',x:45,y:70,label:'E2'},{eid:'e3',x:59,y:68,label:'E3'},{eid:'e4',x:50,y:63,label:'E4'}] },
+  '3208-ES-013E-1': { plant:'ESP', rods:4, desc:'Ground Rod 4 จุด', photo:'photos/3208-ES-013E-1.jpg',
+    pins:[{eid:'e1',x:35,y:72,label:'E1'},{eid:'e2',x:41,y:63,label:'E2'},{eid:'e3',x:45,y:72,label:'E3'},{eid:'e4',x:50,y:63,label:'E4'}] },
+  '3208-ES-013E-2': { plant:'ESP', rods:4, desc:'Ground Rod 4 จุด', photo:'photos/3208-ES-013E-2.png',
+    pins:[{eid:'e1',x:35,y:72,label:'E1'},{eid:'e2',x:41,y:63,label:'E2'},{eid:'e3',x:45,y:72,label:'E3'},{eid:'e4',x:50,y:63,label:'E4'}] },
+  '3208-ES-013E-3': { plant:'ESP', rods:2, desc:'Ground Rod 2 จุด', photo:'photos/3208-ES-013E-3.png',
+    pins:[{eid:'e1',x:35,y:72,label:'E1'},{eid:'e2',x:41,y:63,label:'E2'}] },
+  '3228-ES-001E-E': { plant:'ESP', rods:3, desc:'Ground Rod 3 จุด', photo:'photos/3228-ES-001E-E.png',
+    pins:[{eid:'e1',x:35,y:72,label:'E1'},{eid:'e2',x:41,y:63,label:'E2'},{eid:'e3',x:45,y:72,label:'E3'}] },
+  '3228-ES-001E-F': { plant:'ESP', rods:3, desc:'Ground Rod 3 จุด', photo:'photos/3228-ES-001E-F.png',
+    pins:[{eid:'e1',x:35,y:72,label:'E1'},{eid:'e2',x:41,y:63,label:'E2'},{eid:'e3',x:45,y:72,label:'E3'}] },
+  '3218-ES-014E':   { plant:'ESP', rods:4, desc:'Ground Rod 4 จุด', photo:'photos/3218-ES-014E.png',
+    pins:[{eid:'e1',x:35,y:72,label:'E1'},{eid:'e2',x:41,y:63,label:'E2'},{eid:'e3',x:45,y:72,label:'E3'},{eid:'e4',x:50,y:63,label:'E4'}] },
   '3225-ES-001E1':  { plant:'ESP', rods:3, desc:'Ground Rod 3 จุด', photo:'photos/3225-ES-001E1.png',
-    pins:[{eid:'e1',x:35,y:72,label:'E1'},
-          {eid:'e2',x:41,y:63,label:'E2'},
-          {eid:'e3',x:45,y:72,label:'E3'},] },
+    pins:[{eid:'e1',x:35,y:72,label:'E1'},{eid:'e2',x:41,y:63,label:'E2'},{eid:'e3',x:45,y:72,label:'E3'}] },
   '3225-ES-001E2':  { plant:'ESP', rods:3, desc:'Ground Rod 3 จุด', photo:'photos/3225-ES-001E2.png',
-    pins:[{eid:'e1',x:35,y:72,label:'E1'},
-          {eid:'e2',x:41,y:63,label:'E2'},
-          {eid:'e3',x:45,y:72,label:'E3'},] },
+    pins:[{eid:'e1',x:35,y:72,label:'E1'},{eid:'e2',x:41,y:63,label:'E2'},{eid:'e3',x:45,y:72,label:'E3'}] },
   '3201-ES-008E-1': { plant:'ESP', rods:3, desc:'Ground Rod 3 จุด', photo:'photos/3201-ES-008E-1.png',
-    pins:[{eid:'e1',x:35,y:72,label:'E1'},
-          {eid:'e2',x:41,y:63,label:'E2'},
-          {eid:'e3',x:45,y:72,label:'E3'},] },
-  '3201-ES-008E-2': { plant:'ESP', rods:2, desc:'Ground Rod 2 จุด', photo:'photos/3201-ES-008E-1',  //same photo
-    pins:[{eid:'e1',x:35,y:72,label:'E1'},
-          {eid:'e2',x:41,y:63,label:'E2'},] },
-  '3201-ES-009E-1': { plant:'ESP', rods:4, desc:'Ground Rod 4 จุด', photo:'photos/3201-ES-009E-1.png', 
-    pins:[{eid:'e1',x:35,y:72,label:'E1'},
-          {eid:'e2',x:41,y:63,label:'E2'},
-          {eid:'e3',x:45,y:72,label:'E3'},
-          {eid:'e4',x:50,y:63,label:'E4'} ] },
-  '3201-ES-009E-2': { plant:'ESP', rods:2, desc:'Ground Rod 2 จุด', photo:'photos/3201-ES-009E-1.png', //same photo
-    pins:[{eid:'e1',x:35,y:72,label:'E1'},
-          {eid:'e2',x:41,y:63,label:'E2'},] },
+    pins:[{eid:'e1',x:35,y:72,label:'E1'},{eid:'e2',x:41,y:63,label:'E2'},{eid:'e3',x:45,y:72,label:'E3'}] },
+  '3201-ES-008E-2': { plant:'ESP', rods:2, desc:'Ground Rod 2 จุด', photo:'photos/3201-ES-008E-1.png',
+    pins:[{eid:'e1',x:35,y:72,label:'E1'},{eid:'e2',x:41,y:63,label:'E2'}] },
+  '3201-ES-009E-1': { plant:'ESP', rods:4, desc:'Ground Rod 4 จุด', photo:'photos/3201-ES-009E-1.png',
+    pins:[{eid:'e1',x:35,y:72,label:'E1'},{eid:'e2',x:41,y:63,label:'E2'},{eid:'e3',x:45,y:72,label:'E3'},{eid:'e4',x:50,y:63,label:'E4'}] },
+  '3201-ES-009E-2': { plant:'ESP', rods:2, desc:'Ground Rod 2 จุด', photo:'photos/3201-ES-009E-1.png',
+    pins:[{eid:'e1',x:35,y:72,label:'E1'},{eid:'e2',x:41,y:63,label:'E2'}] },
   '3202-ES-010E':   { plant:'ESP', rods:4, desc:'Ground Rod 4 จุด', photo:'photos/3202-ES-010E.png',
-    pins:[{eid:'e1',x:35,y:72,label:'E1'},
-          {eid:'e2',x:41,y:63,label:'E2'},
-          {eid:'e3',x:45,y:72,label:'E3'},
-          {eid:'e4',x:50,y:63,label:'E4'} ] },
+    pins:[{eid:'e1',x:35,y:72,label:'E1'},{eid:'e2',x:41,y:63,label:'E2'},{eid:'e3',x:45,y:72,label:'E3'},{eid:'e4',x:50,y:63,label:'E4'}] },
   '3206-ES-011E':   { plant:'ESP', rods:4, desc:'Ground Rod 4 จุด', photo:'photos/3206-ES-011E.png',
-    pins:[{eid:'e1',x:35,y:72,label:'E1'},
-          {eid:'e2',x:41,y:63,label:'E2'},
-          {eid:'e3',x:45,y:72,label:'E3'},
-          {eid:'e4',x:50,y:63,label:'E4'} ] },
+    pins:[{eid:'e1',x:35,y:72,label:'E1'},{eid:'e2',x:41,y:63,label:'E2'},{eid:'e3',x:45,y:72,label:'E3'},{eid:'e4',x:50,y:63,label:'E4'}] },
   '3206-ES-020E':   { plant:'ESP', rods:4, desc:'Ground Rod 4 จุด', photo:'photos/3206-ES-020E.png',
-    pins:[{eid:'e1',x:35,y:72,label:'E1'},
-          {eid:'e2',x:41,y:63,label:'E2'},
-          {eid:'e3',x:45,y:72,label:'E3'},
-          {eid:'e4',x:50,y:63,label:'E4'} ] },
+    pins:[{eid:'e1',x:35,y:72,label:'E1'},{eid:'e2',x:41,y:63,label:'E2'},{eid:'e3',x:45,y:72,label:'E3'},{eid:'e4',x:50,y:63,label:'E4'}] },
   '3203-ES-012E-1': { plant:'ESP', rods:3, desc:'Ground Rod 3 จุด', photo:'photos/3203-ES-012E-1.png',
-    pins:[{eid:'e1',x:35,y:72,label:'E1'},
-          {eid:'e2',x:41,y:63,label:'E2'},
-          {eid:'e3',x:45,y:72,label:'E3'},] },
-  '3203-ES-012E-2': { plant:'ESP', rods:4, desc:'Ground Rod 4 จุด', photo:'photos/3203-ES-012E-1.png', //same photo
-    pins:[{eid:'e1',x:35,y:72,label:'E1'},
-          {eid:'e2',x:41,y:63,label:'E2'},
-          {eid:'e3',x:45,y:72,label:'E3'},
-          {eid:'e4',x:50,y:63,label:'E4'} ] },
+    pins:[{eid:'e1',x:35,y:72,label:'E1'},{eid:'e2',x:41,y:63,label:'E2'},{eid:'e3',x:45,y:72,label:'E3'}] },
+  '3203-ES-012E-2': { plant:'ESP', rods:4, desc:'Ground Rod 4 จุด', photo:'photos/3203-ES-012E-1.png',
+    pins:[{eid:'e1',x:35,y:72,label:'E1'},{eid:'e2',x:41,y:63,label:'E2'},{eid:'e3',x:45,y:72,label:'E3'},{eid:'e4',x:50,y:63,label:'E4'}] },
   '3215-ES-015E-1': { plant:'ESP', rods:4, desc:'Ground Rod 4 จุด', photo:'photos/3215-ES-015E-1.png',
-    pins:[{eid:'e1',x:35,y:72,label:'E1'},
-          {eid:'e2',x:41,y:63,label:'E2'},
-          {eid:'e3',x:45,y:72,label:'E3'},
-          {eid:'e4',x:50,y:63,label:'E4'} ] },
+    pins:[{eid:'e1',x:35,y:72,label:'E1'},{eid:'e2',x:41,y:63,label:'E2'},{eid:'e3',x:45,y:72,label:'E3'},{eid:'e4',x:50,y:63,label:'E4'}] },
   '3215-ES-015E-2': { plant:'ESP', rods:2, desc:'Ground Rod 2 จุด', photo:'photos/3215-ES-015E-2.png',
-    pins:[{eid:'e1',x:35,y:72,label:'E1'},
-          {eid:'e2',x:41,y:63,label:'E2'},] },
+    pins:[{eid:'e1',x:35,y:72,label:'E1'},{eid:'e2',x:41,y:63,label:'E2'}] },
   '3216-ES-001E1':  { plant:'ESP', rods:3, desc:'Ground Rod 3 จุด', photo:'photos/3216-ES-001E1.png',
-    pins:[{eid:'e1',x:35,y:72,label:'E1'},
-          {eid:'e2',x:41,y:63,label:'E2'},
-          {eid:'e3',x:45,y:72,label:'E3'},] },
-  '3216-ES-001E2':  { plant:'ESP', rods:4, desc:'Ground Rod 4 จุด', photo:'photos/3216-ES-001E1.png', //same photo
-    pins:[{eid:'e1',x:35,y:72,label:'E1'},
-          {eid:'e2',x:41,y:63,label:'E2'},
-          {eid:'e3',x:45,y:72,label:'E3'},
-          {eid:'e4',x:50,y:63,label:'E4'} ] },
-
-  // ──────────── GSP1 (เพิ่ม EQ ที่นี่) ────────────
-  // 'GSP1-ES-001E': { plant:'GSP1', rods:3, desc:'Ground Rod 3 จุด', photo:null, pins:[] },
-
-  // ──────────── GSP2 ────────────
-  // ──────────── GSP3 ────────────
-  // ──────────── GSP5 ────────────
-  // ──────────── GSP6 ────────────
-  // ──────────── GPPP ────────────
-  // ──────────── Tankfarm ────────────
+    pins:[{eid:'e1',x:35,y:72,label:'E1'},{eid:'e2',x:41,y:63,label:'E2'},{eid:'e3',x:45,y:72,label:'E3'}] },
+  '3216-ES-001E2':  { plant:'ESP', rods:4, desc:'Ground Rod 4 จุด', photo:'photos/3216-ES-001E1.png',
+    pins:[{eid:'e1',x:35,y:72,label:'E1'},{eid:'e2',x:41,y:63,label:'E2'},{eid:'e3',x:45,y:72,label:'E3'},{eid:'e4',x:50,y:63,label:'E4'}] },
 };
 
 // ═══════════════════════════════════════════════════════════
@@ -740,10 +574,10 @@ function clearAllData() {
 // ═══════════════════════════════════════════════════════════
 // ZONE E — HELPERS
 // ═══════════════════════════════════════════════════════════
-function rodColor(val, isMain) {
+function rodColor(val) {
   if (val === '' || isNaN(parseFloat(val))) return 'empty';
-  const v = parseFloat(val), lim = isMain ? LIMIT_EMAIN : LIMIT_ROD;
-  return v <= lim ? 'ok' : v <= lim * 1.5 ? 'warn' : 'bad';
+  const v = parseFloat(val);
+  return v <= LIMIT_ROD ? 'ok' : v <= LIMIT_ROD * 1.5 ? 'warn' : 'bad';
 }
 function calcETotal(tag) {
   const cfg = EQ_DATA[tag]; if (!cfg) return null;
@@ -762,14 +596,8 @@ function getEqStatus(tag) {
   for (let i = 1; i <= cfg.rods; i++) if (d['e'+i] !== undefined && d['e'+i] !== '') filled++;
   if (!filled) return 'empty';
   if (filled < cfg.rods) return 'partial';
-  const et = parseFloat(calcETotal(tag)), em = parseFloat(d.emain || '');
-  const mainOk = isNaN(em) || em <= LIMIT_EMAIN;
-  const totOk  = isNaN(et) || et <= LIMIT_EMAIN;
-  return (mainOk && totOk) ? 'pass' : 'fail';
-}
-function getResultText(tag) {
-  const s = getEqStatus(tag);
-  return s === 'pass' ? 'ผ่าน' : s === 'fail' ? 'ไม่ผ่าน' : s === 'partial' ? 'บางส่วน' : 'ยังไม่วัด';
+  const et = parseFloat(calcETotal(tag));
+  return (isNaN(et) || et <= LIMIT_ETOT) ? 'pass' : 'fail';
 }
 
 // ═══════════════════════════════════════════════════════════
@@ -799,7 +627,6 @@ function renderList() {
 
   Object.keys(EQ_DATA).forEach(tag => {
     const cfg = EQ_DATA[tag];
-    // กรอง plant
     if (activePlant !== 'ALL' && cfg.plant !== activePlant) return;
     total++;
     const status = getEqStatus(tag);
@@ -813,7 +640,7 @@ function renderList() {
     const d = data[tag] || {};
     const etotal = calcETotal(tag);
     const dotCls = status==='pass'?'done':status==='fail'?'bad':status==='partial'?'partial':'';
-    const etCls  = !etotal?'result-empty':parseFloat(etotal)<=LIMIT_EMAIN?'result-pass':'result-fail';
+    const etCls  = !etotal?'result-empty':parseFloat(etotal)<=LIMIT_ETOT?'result-pass':'result-fail';
     const sent   = d._sent ? `<div class="eq-sent">✓ ส่งแล้ว ${d._sent}</div>` : '';
 
     const card = document.createElement('div');
@@ -827,7 +654,6 @@ function renderList() {
       </div>
       <div class="eq-summary">
         <div class="eq-etotal ${etCls}">${etotal ? etotal+'Ω' : '—'}</div>
-        <div class="eq-emain">E-Main <span>${d.emain ? d.emain+'Ω' : '—'}</span></div>
       </div>`;
     card.onclick = () => openModal(tag);
     list.appendChild(card);
@@ -851,13 +677,10 @@ function openModal(tag) {
   document.getElementById('modalDesc').textContent  = cfg.desc;
   renderModalBody(tag);
   document.getElementById('modalOverlay').classList.add('open');
-  
-  // เปิดใช้งานระบบซูมและจัดตำแหน่งหมุดล็อกสเกลภาพ
   setTimeout(() => {
     initZoomAndPan(tag);
     positionPins(tag);
   }, 60);
-  
   document.body.style.overflow = 'hidden';
 }
 function closeModal() {
@@ -878,7 +701,7 @@ function renderModalBody(tag) {
   let photoHTML = '';
   if (cfg.photo && cfg.pins && cfg.pins.length) {
     const pinsHTML = cfg.pins.map(p => {
-      const val = d[p.eid]||'', cls = rodColor(val, false);
+      const val = d[p.eid]||'', cls = rodColor(val);
       const colVar = cls==='ok'?'green':cls==='warn'?'yellow':cls==='bad'?'red':'dim';
       return `<div class="pin" data-x="${p.x}" data-y="${p.y}"
         onclick="focusEInput('${tag}','${p.eid}')" id="pin-${tag}-${p.eid}">
@@ -896,7 +719,7 @@ function renderModalBody(tag) {
     photoHTML = `<div class="photo-zone"><img src="${cfg.photo}" alt="${tag}" loading="lazy"></div>`;
   } else {
     const stripPins = Array.from({length:cfg.rods},(_,i) => {
-      const ei='e'+(i+1), val=d[ei]||'', cls=rodColor(val,false);
+      const ei='e'+(i+1), val=d[ei]||'', cls=rodColor(val);
       const xPct = cfg.rods===1 ? 50 : 10+(i/(cfg.rods-1))*80;
       const colVar = cls==='ok'?'green':cls==='warn'?'yellow':cls==='bad'?'red':'dim';
       return `<div class="pin" style="left:${xPct}%;top:50%" onclick="focusEInput('${tag}','${ei}')">
@@ -919,9 +742,9 @@ function renderModalBody(tag) {
       </svg>${stripPins}</div>`;
   }
 
-  // ── Input cells ──
+  // ── Input cells (E1–En เท่านั้น ไม่มี E-Main) ──
   const inputsHTML = Array.from({length:cfg.rods},(_,i) => {
-    const ei='e'+(i+1), val=d[ei]||'', cls=rodColor(val,false), iCls=cls==='empty'?'':cls;
+    const ei='e'+(i+1), val=d[ei]||'', cls=rodColor(val), iCls=cls==='empty'?'':cls;
     return `<div class="e-cell ${iCls}" id="ecell-${tag}-${ei}">
       <div class="e-label">
         <span class="e-badge">E${i+1}</span>
@@ -936,21 +759,18 @@ function renderModalBody(tag) {
     </div>`;
   }).join('');
 
-  const emainVal=d.emain||'', emainCls=rodColor(emainVal,true), emCls=emainCls==='empty'?'':emainCls;
-  const etotal=calcETotal(tag);
-  const etotalF=parseFloat(etotal), emainF=parseFloat(emainVal);
-  const totCls  = !etotal   ? 'result-empty' : etotalF<=LIMIT_EMAIN ? 'result-pass' : 'result-fail';
-  const mainCls = !emainVal ? 'result-empty' : emainF <=LIMIT_EMAIN ? 'result-pass' : 'result-fail';
+  const etotal  = calcETotal(tag);
+  const etotalF = parseFloat(etotal);
+  const totCls  = !etotal ? 'result-empty' : etotalF<=LIMIT_ETOT ? 'result-pass' : 'result-fail';
 
   // ── Verdict ──
   const status = getEqStatus(tag);
-  let verdictIcon='⏳', verdictLabel='รอกรอกข้อมูล', verdictSub='กรอก E1–En และ E-Main ให้ครบ';
+  let verdictIcon='⏳', verdictLabel='รอกรอกข้อมูล', verdictSub='กรอก E1–En ให้ครบทุกจุด';
   let verdictCls = 'empty';
-  if (status === 'pass') { verdictIcon='✅'; verdictLabel='ผ่านเกณฑ์'; verdictSub=`E-Total=${etotal}Ω, E-Main=${emainVal}Ω`; verdictCls='pass'; }
-  if (status === 'fail') { verdictIcon='❌'; verdictLabel='ไม่ผ่านเกณฑ์'; verdictSub=`ตรวจสอบค่าที่เกิน ${LIMIT_EMAIN}Ω`; verdictCls='fail'; }
+  if (status === 'pass') { verdictIcon='✅'; verdictLabel='ผ่านเกณฑ์'; verdictSub=`E-Total = ${etotal} Ω`; verdictCls='pass'; }
+  if (status === 'fail') { verdictIcon='❌'; verdictLabel='ไม่ผ่านเกณฑ์'; verdictSub=`E-Total เกิน ${LIMIT_ETOT} Ω`; verdictCls='fail'; }
   if (status === 'partial') { verdictIcon='📋'; verdictLabel='กรอกบางส่วน'; verdictSub='กรอกค่าให้ครบทุกจุด'; verdictCls='empty'; }
 
-  // ── Inspector fields ──
   const meta = JSON.parse(localStorage.getItem('gi_meta_v3') || '{}');
   const inspectorVal = meta.inspector || '', dateVal = meta.date || new Date().toISOString().slice(0,10);
   const roundVal = meta.round || '', equipVal = meta.equip || '';
@@ -958,7 +778,6 @@ function renderModalBody(tag) {
   body.innerHTML = `
     ${photoHTML}
 
-    <!-- Inspector (บังคับกรอก) -->
     <div>
       <div class="section-title">ข้อมูลผู้ตรวจสอบ <span class="required-star">* บังคับกรอก</span></div>
       <div class="inspector-form" style="margin-top:8px">
@@ -991,38 +810,18 @@ function renderModalBody(tag) {
       </div>
     </div>
 
-    <!-- Measurement -->
     <div>
       <div class="section-title">ค่าความต้านทาน — เรียงซ้าย → ขวา</div>
-      <div class="e-grid" style="margin-top:8px">
-        ${inputsHTML}
-        <div class="e-cell emain-cell ${emCls}" id="ecell-${tag}-emain">
-          <div class="e-label">
-            <span class="e-badge" style="background:var(--blue)">E-MAIN</span>
-            <span class="e-desc">วัดโดยตรง</span>
-          </div>
-          <input class="e-input ${emCls}" id="einp-${tag}-emain"
-            type="number" step="0.001" min="0" inputmode="decimal"
-            value="${emainVal}" placeholder="0.000"
-            oninput="onEChange('${tag}','emain',this.value)">
-          <div class="e-unit">Ω · limit ≤ ${LIMIT_EMAIN} Ω</div>
-        </div>
-      </div>
+      <div class="e-grid" style="margin-top:8px">${inputsHTML}</div>
     </div>
 
-    <!-- Results -->
     <div>
       <div class="section-title">ผลการคำนวณ</div>
       <div class="result-row" style="margin-top:8px">
         <div class="result-box">
           <div class="result-box-lbl">E-Total (Parallel)</div>
           <div class="result-box-val ${totCls}" id="etotal-disp">${etotal ? etotal+'Ω' : '—'}</div>
-          <div class="result-box-sub">เกณฑ์ &lt; ${LIMIT_EMAIN}Ω</div>
-        </div>
-        <div class="result-box">
-          <div class="result-box-lbl">E-Main (วัดตรง)</div>
-          <div class="result-box-val ${mainCls}" id="emain-disp">${emainVal ? emainVal+'Ω' : '—'}</div>
-          <div class="result-box-sub">เกณฑ์ &lt; ${LIMIT_EMAIN}Ω</div>
+          <div class="result-box-sub">เกณฑ์ &lt; ${LIMIT_ETOT} Ω</div>
         </div>
       </div>
       <div class="verdict-box ${verdictCls}" id="verdict-box" style="margin-top:8px">
@@ -1034,7 +833,6 @@ function renderModalBody(tag) {
       </div>
     </div>
 
-    <!-- Remark -->
     <div>
       <div class="section-title">หมายเหตุ</div>
       <textarea class="remark-input" style="margin-top:8px"
@@ -1042,10 +840,8 @@ function renderModalBody(tag) {
         oninput="onRemarkChange('${tag}',this.value)">${d.remark||''}</textarea>
     </div>
 
-    <!-- Send status -->
     <div class="send-banner" id="send-banner"></div>
 
-    <!-- Actions -->
     <div class="action-row" style="padding-bottom:8px">
       <button class="btn btn-primary" onclick="submitOne('${tag}')">📤 บันทึก &amp; ส่งข้อมูล</button>
       <button class="btn btn-clear"   onclick="clearEQ('${tag}')">🗑</button>
@@ -1055,359 +851,252 @@ function renderModalBody(tag) {
 // ═══════════════════════════════════════════════════════════
 // ZONE I — PIN POSITIONING
 // ═══════════════════════════════════════════════════════════
-// ตัวแปรแกนสำหรับคำนวณและควบคุมการขยายภาพ (Scale & Pan)
-let currentScale = 1, currentX = 0, currentY = 0;
-let isDragging = false, startX = 0, startY = 0;
-let initialPinchDist = 0, initialScale = 1;
+let currentScale=1, currentX=0, currentY=0;
+let isDragging=false, startX=0, startY=0;
+let initialPinchDist=0, initialScale=1;
 
 function positionPins(tag) {
-  const container = document.getElementById('pcontainer-' + tag);
+  const container = document.getElementById('pcontainer-'+tag);
   if (!container) return;
-
-  // ปักเปอร์เซ็นต์หมุดลงบนขอบภาพชั้นในโดยตรงอย่างคงที่
   container.querySelectorAll('.pin[data-x]').forEach(pin => {
-    const px = parseFloat(pin.dataset.x);
-    const py = parseFloat(pin.dataset.y);
-    pin.style.left = px + '%';
-    pin.style.top = py + '%';
-    pin.style.transform = 'translate(-50%, -50%)';
+    pin.style.left = pin.dataset.x+'%';
+    pin.style.top  = pin.dataset.y+'%';
+    pin.style.transform = 'translate(-50%,-50%)';
   });
 }
 
 function initZoomAndPan(tag) {
-  const zone = document.getElementById('pzone-' + tag);
-  const container = document.getElementById('pcontainer-' + tag);
-  if (!zone || !container) return;
+  const zone = document.getElementById('pzone-'+tag);
+  const container = document.getElementById('pcontainer-'+tag);
+  if (!zone||!container) return;
+  currentScale=1; currentX=0; currentY=0;
+  container.style.transform = 'translate(0px,0px) scale(1)';
 
-  // รีเซ็ตตำแหน่งให้กลับมาอยู่ตรงกลางพอดีทุกครั้งเมื่อเปิดอุปกรณ์ใหม่
-  currentScale = 1; currentX = 0; currentY = 0;
-  container.style.transform = `translate(0px, 0px) scale(1)`;
-
-  // สัญญาณใช้นิ้วลาก/เมาส์ลากเลื่อนรูปภาพ (Pan)
   zone.addEventListener('pointerdown', (e) => {
-    if (e.target.closest('.pin')) return; 
-    isDragging = true;
-    zone.setPointerCapture(e.pointerId);
-    startX = e.clientX - currentX;
-    startY = e.clientY - currentY;
+    if (e.target.closest('.pin')) return;
+    isDragging=true; zone.setPointerCapture(e.pointerId);
+    startX=e.clientX-currentX; startY=e.clientY-currentY;
   });
-
   zone.addEventListener('pointermove', (e) => {
     if (!isDragging) return;
-    currentX = e.clientX - startX;
-    currentY = e.clientY - startY;
-    container.style.transform = `translate(${currentX}px, ${currentY}px) scale(${currentScale})`;
+    currentX=e.clientX-startX; currentY=e.clientY-startY;
+    container.style.transform=`translate(${currentX}px,${currentY}px) scale(${currentScale})`;
   });
-
   zone.addEventListener('pointerup', (e) => {
-    isDragging = false;
-    zone.releasePointerCapture(e.pointerId);
+    isDragging=false; zone.releasePointerCapture(e.pointerId);
   });
-
-  // ใช้ scroll wheel บนเมาส์คอมพิวเตอร์เพื่อซูมเข้า-ออก
   zone.addEventListener('wheel', (e) => {
     e.preventDefault();
-    const zoomFactor = 0.15;
-    if (e.deltaY < 0) {
-      currentScale = Math.min(currentScale + zoomFactor, 4); // ซูมขยายสูงสุด 4 เท่า
-    } else {
-      currentScale = Math.max(currentScale - zoomFactor, 1); // ย่อต่ำสุดเท่าขนาดจริง
-    }
-    if (currentScale === 1) { currentX = 0; currentY = 0; }
-    container.style.transform = `translate(${currentX}px, ${currentY}px) scale(${currentScale})`;
-  }, { passive: false });
-
-  // สัมผัสกาง 2 นิ้วถ่างซูมเข้าออกบนหน้าจอมือถือ (Pinch to Zoom)
+    currentScale = e.deltaY<0 ? Math.min(currentScale+0.15,4) : Math.max(currentScale-0.15,1);
+    if (currentScale===1){currentX=0;currentY=0;}
+    container.style.transform=`translate(${currentX}px,${currentY}px) scale(${currentScale})`;
+  },{passive:false});
   zone.addEventListener('touchstart', (e) => {
-    if (e.touches.length === 2) {
-      initialPinchDist = Math.hypot(
-        e.touches[0].clientX - e.touches[1].clientX,
-        e.touches[0].clientY - e.touches[1].clientY
-      );
-      initialScale = currentScale;
+    if (e.touches.length===2) {
+      initialPinchDist=Math.hypot(e.touches[0].clientX-e.touches[1].clientX,e.touches[0].clientY-e.touches[1].clientY);
+      initialScale=currentScale;
     }
   });
-
   zone.addEventListener('touchmove', (e) => {
-    if (e.touches.length === 2 && initialPinchDist > 0) {
-      const currentDist = Math.hypot(
-        e.touches[0].clientX - e.touches[1].clientX,
-        e.touches[0].clientY - e.touches[1].clientY
-      );
-      const factor = currentDist / initialPinchDist;
-      currentScale = Math.min(Math.max(initialScale * factor, 1), 4);
-      if (currentScale === 1) { currentX = 0; currentY = 0; }
-      container.style.transform = `translate(${currentX}px, ${currentY}px) scale(${currentScale})`;
+    if (e.touches.length===2&&initialPinchDist>0) {
+      const d=Math.hypot(e.touches[0].clientX-e.touches[1].clientX,e.touches[0].clientY-e.touches[1].clientY);
+      currentScale=Math.min(Math.max(initialScale*(d/initialPinchDist),1),4);
+      if (currentScale===1){currentX=0;currentY=0;}
+      container.style.transform=`translate(${currentX}px,${currentY}px) scale(${currentScale})`;
     }
   });
-
-  zone.addEventListener('touchend', (e) => {
-    if (e.touches.length < 2) initialPinchDist = 0;
-  });
+  zone.addEventListener('touchend', (e) => {if(e.touches.length<2)initialPinchDist=0;});
 }
 
-window.addEventListener('resize', () => {
-  if (activeTag) positionPins(activeTag);
-});
+window.addEventListener('resize', () => { if (activeTag) positionPins(activeTag); });
 
 // ═══════════════════════════════════════════════════════════
 // ZONE J — INPUT HANDLERS
 // ═══════════════════════════════════════════════════════════
 function onEChange(tag, eid, val) {
-  if (!data[tag]) data[tag] = {};
-  data[tag][eid] = val;
+  if (!data[tag]) data[tag]={};
+  data[tag][eid]=val;
   saveLocal();
-  const isMain = eid === 'emain';
-  const cls = rodColor(val, isMain), iCls = cls === 'empty' ? '' : cls;
-  const cell = document.getElementById(`ecell-${tag}-${eid}`);
-  const inp  = document.getElementById(`einp-${tag}-${eid}`);
-  if (cell) cell.className = `e-cell${isMain?' emain-cell':''} ${iCls}`;
-  if (inp)  inp.className  = `e-input ${iCls}`;
+  const cls=rodColor(val), iCls=cls==='empty'?'':cls;
+  const cell=document.getElementById(`ecell-${tag}-${eid}`);
+  const inp =document.getElementById(`einp-${tag}-${eid}`);
+  if (cell) cell.className=`e-cell ${iCls}`;
+  if (inp)  inp.className =`e-input ${iCls}`;
   updateResultDisplay(tag);
   updatePinColor(tag, eid, cls);
 }
 
 function updateResultDisplay(tag) {
-  const etotal = calcETotal(tag);
-  const d = data[tag] || {};
-  const emainVal = d.emain || '';
-  const etotalF = parseFloat(etotal), emainF = parseFloat(emainVal);
-  const totCls  = !etotal   ? 'result-empty' : etotalF<=LIMIT_EMAIN ? 'result-pass' : 'result-fail';
-  const mainCls = !emainVal ? 'result-empty' : emainF <=LIMIT_EMAIN ? 'result-pass' : 'result-fail';
-  const te = document.getElementById('etotal-disp');
-  const me = document.getElementById('emain-disp');
-  if (te) { te.className = `result-box-val ${totCls}`; te.textContent = etotal ? etotal+'Ω' : '—'; }
-  if (me) { me.className = `result-box-val ${mainCls}`; me.textContent = emainVal ? emainVal+'Ω' : '—'; }
+  const etotal=calcETotal(tag);
+  const etotalF=parseFloat(etotal);
+  const totCls=!etotal?'result-empty':etotalF<=LIMIT_ETOT?'result-pass':'result-fail';
+  const te=document.getElementById('etotal-disp');
+  if (te){te.className=`result-box-val ${totCls}`;te.textContent=etotal?etotal+'Ω':'—';}
 
-  // Verdict
-  const status = getEqStatus(tag);
-  const vbox  = document.getElementById('verdict-box');
-  const vlbl  = document.getElementById('verdict-label');
-  const vsub  = document.getElementById('verdict-sub');
+  const status=getEqStatus(tag);
+  const vbox=document.getElementById('verdict-box');
+  const vlbl=document.getElementById('verdict-label');
+  const vsub=document.getElementById('verdict-sub');
   if (!vbox) return;
-  vbox.className = 'verdict-box ' + (status==='pass'?'pass':status==='fail'?'fail':'empty');
-  if (status === 'pass') {
-    vbox.querySelector('.verdict-icon').textContent = '✅';
-    if (vlbl) vlbl.textContent = 'ผ่านเกณฑ์';
-    if (vsub) vsub.textContent = `E-Total=${etotal}Ω, E-Main=${emainVal}Ω`;
-  } else if (status === 'fail') {
-    vbox.querySelector('.verdict-icon').textContent = '❌';
-    if (vlbl) vlbl.textContent = 'ไม่ผ่านเกณฑ์';
-    if (vsub) vsub.textContent = `ตรวจสอบค่าที่เกิน ${LIMIT_EMAIN}Ω`;
+  vbox.className='verdict-box '+(status==='pass'?'pass':status==='fail'?'fail':'empty');
+  if (status==='pass'){
+    vbox.querySelector('.verdict-icon').textContent='✅';
+    if(vlbl) vlbl.textContent='ผ่านเกณฑ์';
+    if(vsub) vsub.textContent=`E-Total = ${etotal} Ω`;
+  } else if (status==='fail'){
+    vbox.querySelector('.verdict-icon').textContent='❌';
+    if(vlbl) vlbl.textContent='ไม่ผ่านเกณฑ์';
+    if(vsub) vsub.textContent=`E-Total เกิน ${LIMIT_ETOT} Ω`;
   } else {
-    vbox.querySelector('.verdict-icon').textContent = '⏳';
-    if (vlbl) vlbl.textContent = status==='partial'?'กรอกบางส่วน':'รอกรอกข้อมูล';
-    if (vsub) vsub.textContent = 'กรอกค่าให้ครบทุกจุด';
+    vbox.querySelector('.verdict-icon').textContent='⏳';
+    if(vlbl) vlbl.textContent=status==='partial'?'กรอกบางส่วน':'รอกรอกข้อมูล';
+    if(vsub) vsub.textContent='กรอกค่าให้ครบทุกจุด';
   }
 }
 
-function updatePinColor(tag, eid, cls) {
-  const pinc = document.getElementById(`pinc-${tag}-${eid}`);
-  if (pinc) pinc.className = `pin-circle ${cls}`;
+function updatePinColor(tag,eid,cls){
+  const pinc=document.getElementById(`pinc-${tag}-${eid}`);
+  if(pinc) pinc.className=`pin-circle ${cls}`;
 }
-
-function focusEInput(tag, eid) {
-  const el = document.getElementById(`einp-${tag}-${eid}`);
-  if (el) { el.focus(); el.select(); }
+function focusEInput(tag,eid){
+  const el=document.getElementById(`einp-${tag}-${eid}`);
+  if(el){el.focus();el.select();}
 }
-function highlightPin(tag, eid) {
-  document.querySelectorAll('.pin-circle').forEach(p => p.style.transform = '');
-  const pinc = document.getElementById(`pinc-${tag}-${eid}`);
-  if (pinc) pinc.style.transform = 'scale(1.2)';
+function highlightPin(tag,eid){
+  document.querySelectorAll('.pin-circle').forEach(p=>p.style.transform='');
+  const pinc=document.getElementById(`pinc-${tag}-${eid}`);
+  if(pinc) pinc.style.transform='scale(1.2)';
 }
-
-function onRemarkChange(tag, val) {
-  if (!data[tag]) data[tag] = {};
-  data[tag].remark = val;
+function onRemarkChange(tag,val){
+  if(!data[tag]) data[tag]={};
+  data[tag].remark=val;
   saveLocal();
 }
-
-function clearEQ(tag) {
-  if (!confirm(`ล้างข้อมูล ${tag}?`)) return;
-  data[tag] = {};
+function clearEQ(tag){
+  if(!confirm(`ล้างข้อมูล ${tag}?`)) return;
+  data[tag]={};
   saveLocal();
   renderModalBody(tag);
   showToast('🗑 ล้างข้อมูลแล้ว');
 }
 
 // ═══════════════════════════════════════════════════════════
-// ZONE K — META (ชื่อช่าง/วันที่/รอบ)
+// ZONE K — META
 // ═══════════════════════════════════════════════════════════
-function saveMeta() {
-  const meta = {
-    inspector: document.getElementById('inp-inspector')?.value || '',
-    date:      document.getElementById('inp-date')?.value      || '',
-    round:     document.getElementById('inp-round')?.value     || '',
-    equip:     document.getElementById('inp-equip')?.value     || '',
+function saveMeta(){
+  const meta={
+    inspector:document.getElementById('inp-inspector')?.value||'',
+    date:document.getElementById('inp-date')?.value||'',
+    round:document.getElementById('inp-round')?.value||'',
+    equip:document.getElementById('inp-equip')?.value||'',
   };
-  localStorage.setItem('gi_meta_v3', JSON.stringify(meta));
+  localStorage.setItem('gi_meta_v3',JSON.stringify(meta));
 }
-
-function getMeta() {
-  return JSON.parse(localStorage.getItem('gi_meta_v3') || '{}');
-}
-
-function validateMeta() {
-  const inspector = document.getElementById('inp-inspector')?.value?.trim();
-  const date      = document.getElementById('inp-date')?.value?.trim();
-  let ok = true;
-  const errI = document.getElementById('err-inspector');
-  const errD = document.getElementById('err-date');
-  const inpI = document.getElementById('inp-inspector');
-  const inpD = document.getElementById('inp-date');
-
-  if (!inspector) {
-    ok = false;
-    if (errI) errI.classList.add('show');
-    if (inpI) inpI.classList.add('error');
-  } else {
-    if (errI) errI.classList.remove('show');
-    if (inpI) inpI.classList.remove('error');
-  }
-  if (!date) {
-    ok = false;
-    if (errD) errD.classList.add('show');
-    if (inpD) inpD.classList.add('error');
-  } else {
-    if (errD) errD.classList.remove('show');
-    if (inpD) inpD.classList.remove('error');
-  }
+function getMeta(){ return JSON.parse(localStorage.getItem('gi_meta_v3')||'{}'); }
+function validateMeta(){
+  const inspector=document.getElementById('inp-inspector')?.value?.trim();
+  const date=document.getElementById('inp-date')?.value?.trim();
+  let ok=true;
+  const errI=document.getElementById('err-inspector'), errD=document.getElementById('err-date');
+  const inpI=document.getElementById('inp-inspector'), inpD=document.getElementById('inp-date');
+  if(!inspector){ok=false;errI?.classList.add('show');inpI?.classList.add('error');}
+  else{errI?.classList.remove('show');inpI?.classList.remove('error');}
+  if(!date){ok=false;errD?.classList.add('show');inpD?.classList.add('error');}
+  else{errD?.classList.remove('show');inpD?.classList.remove('error');}
   return ok;
 }
 
 // ═══════════════════════════════════════════════════════════
-// ZONE L — SUBMIT TO GOOGLE SHEETS
+// ZONE L — SUBMIT
 // ═══════════════════════════════════════════════════════════
-// buildPayload — ส่ง key ให้ตรงกับที่ Apps Script รับใน doPost()
-function buildPayload(tag) {
-  const cfg = EQ_DATA[tag] || {};
-  const d = data[tag] || {};
-  const meta = getMeta();
-  const etotal = calcETotal(tag);
-
+function buildPayload(tag){
+  const cfg=EQ_DATA[tag]||{}, d=data[tag]||{}, meta=getMeta();
+  const etotal=calcETotal(tag);
   return {
-    tag:       tag,
-    plant:     cfg.plant   || 'UNKNOWN',
-    date:      meta.date   || new Date().toISOString().slice(0,10),
-    round:     meta.round  || '',
-    inspector: meta.inspector || '',
-    equip:     meta.equip  || '',
-    e1:        d.e1 !== undefined && d.e1 !== '' ? parseFloat(d.e1) : '',
-    e2:        d.e2 !== undefined && d.e2 !== '' ? parseFloat(d.e2) : '',
-    e3:        d.e3 !== undefined && d.e3 !== '' ? parseFloat(d.e3) : '',
-    e4:        d.e4 !== undefined && d.e4 !== '' ? parseFloat(d.e4) : '',
-    e5:        d.e5 !== undefined && d.e5 !== '' ? parseFloat(d.e5) : '',
-    etotal:    etotal !== '' && etotal != null ? parseFloat(etotal) : '',
-    emain:     d.emain !== undefined && d.emain !== '' ? parseFloat(d.emain) : '',
-    remark:    d.remark || '',
+    tag, plant:cfg.plant||'UNKNOWN',
+    date:meta.date||new Date().toISOString().slice(0,10),
+    round:meta.round||'', inspector:meta.inspector||'', equip:meta.equip||'',
+    e1:d.e1!==undefined&&d.e1!==''?parseFloat(d.e1):'',
+    e2:d.e2!==undefined&&d.e2!==''?parseFloat(d.e2):'',
+    e3:d.e3!==undefined&&d.e3!==''?parseFloat(d.e3):'',
+    e4:d.e4!==undefined&&d.e4!==''?parseFloat(d.e4):'',
+    e5:d.e5!==undefined&&d.e5!==''?parseFloat(d.e5):'',
+    etotal:etotal!=null&&etotal!==''?parseFloat(etotal):'',
+    remark:d.remark||'',
   };
 }
 
-async function submitOne(tag) {
-  if (!validateMeta()) {
-    showToast('⚠ กรุณากรอกชื่อผู้ตรวจและวันที่ก่อน');
-    document.getElementById('inp-inspector')?.focus();
-    return;
-  }
+async function submitOne(tag){
+  if(!validateMeta()){showToast('⚠ กรุณากรอกชื่อผู้ตรวจและวันที่ก่อน');document.getElementById('inp-inspector')?.focus();return;}
   saveMeta();
-  setBanner('sending', '⏳ กำลังส่งข้อมูลเข้าสู่ระบบคลาวด์...');
+  setBanner('sending','⏳ กำลังส่งข้อมูลเข้าสู่ระบบคลาวด์...');
   try {
-    await fetch(SCRIPT_URL, {
-      method: 'POST', 
-      mode: 'no-cors',
-      headers: {'Content-Type':'application/json'},
-      body: JSON.stringify(buildPayload(tag))
-    });
-    const now = new Date().toLocaleTimeString('th-TH');
-    if (!data[tag]) data[tag] = {};
-    data[tag]._sent = now;
-    saveLocal();
-    setBanner('success', `✅ ส่งข้อมูลสำเร็จ เวลา ${now}`);
+    await fetch(SCRIPT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify(buildPayload(tag))});
+    const now=new Date().toLocaleTimeString('th-TH');
+    if(!data[tag]) data[tag]={};
+    data[tag]._sent=now; saveLocal();
+    setBanner('success',`✅ ส่งข้อมูลสำเร็จ เวลา ${now}`);
     showToast('✅ ส่งข้อมูลสำเร็จ');
-  } catch(e) {
-    setBanner('error', '❌ ส่งไม่ได้ ตรวจสอบอินเทอร์เน็ต แล้วลองใหม่');
+  } catch(e){
+    setBanner('error','❌ ส่งไม่ได้ ตรวจสอบอินเทอร์เน็ต แล้วลองใหม่');
     showToast('⚠ ส่งไม่ได้');
   }
 }
 
-async function submitAll() {
-  const meta = getMeta();
-  if (!meta.inspector || !meta.date) {
-    showToast('⚠ กรุณากรอกชื่อผู้ตรวจและวันที่ในฟอร์มตู้ก่อนส่ง');
-    return;
-  }
-  const tags = Object.keys(EQ_DATA).filter(t =>
-    (activePlant === 'ALL' || EQ_DATA[t].plant === activePlant) &&
-    getEqStatus(t) !== 'empty'
-  );
-  
-  if (!tags.length) { 
-    showToast('⚠ ไม่มีข้อมูลที่จะส่ง'); 
-    return; 
-  }
-  
-  if (!confirm(`ส่งข้อมูล ${tags.length} รายการไป Google Sheets?`)) return;
-
+async function submitAll(){
+  const meta=getMeta();
+  if(!meta.inspector||!meta.date){showToast('⚠ กรุณากรอกชื่อผู้ตรวจและวันที่ในฟอร์มตู้ก่อนส่ง');return;}
+  const tags=Object.keys(EQ_DATA).filter(t=>(activePlant==='ALL'||EQ_DATA[t].plant===activePlant)&&getEqStatus(t)!=='empty');
+  if(!tags.length){showToast('⚠ ไม่มีข้อมูลที่จะส่ง');return;}
+  if(!confirm(`ส่งข้อมูล ${tags.length} รายการไป Google Sheets?`)) return;
   showToast(`⏳ กำลังส่ง ${tags.length} รายการ...`);
-  let ok = 0;
-  for (const tag of tags) {
-    try {
-      await fetch(SCRIPT_URL, {
-        method: 'POST', 
-        mode: 'no-cors',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(buildPayload(tag))
-      });
-      const now = new Date().toLocaleTimeString('th-TH');
-      if (!data[tag]) data[tag] = {};
-      data[tag]._sent = now;
-      ok++;
-    } catch(e) {
-      console.error(e);
-    }
+  let ok=0;
+  for(const tag of tags){
+    try{
+      await fetch(SCRIPT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify(buildPayload(tag))});
+      const now=new Date().toLocaleTimeString('th-TH');
+      if(!data[tag]) data[tag]={};
+      data[tag]._sent=now; ok++;
+    } catch(e){console.error(e);}
   }
-  saveLocal();
-  renderList();
+  saveLocal(); renderList();
   showToast(`✅ ส่งสำเร็จ ${ok}/${tags.length} รายการ`);
 }
 
-function setBanner(type, msg) {
-  const b = document.getElementById('send-banner');
-  if (!b) return;
-  b.className = `send-banner ${type}`;
-  b.textContent = msg;
+function setBanner(type,msg){
+  const b=document.getElementById('send-banner');
+  if(!b) return;
+  b.className=`send-banner ${type}`;
+  b.textContent=msg;
 }
 
 // ═══════════════════════════════════════════════════════════
 // ZONE M — THEME
 // ═══════════════════════════════════════════════════════════
-function toggleTheme() {
-  const cur = document.documentElement.dataset.theme;
-  const next = cur === 'light' ? 'dark' : 'light';
-  document.documentElement.dataset.theme = next;
-  localStorage.setItem('gi_theme_v3', next);
+function toggleTheme(){
+  const next=document.documentElement.dataset.theme==='light'?'dark':'light';
+  document.documentElement.dataset.theme=next;
+  localStorage.setItem('gi_theme_v3',next);
 }
 
 // ═══════════════════════════════════════════════════════════
 // ZONE N — TOAST
 // ═══════════════════════════════════════════════════════════
 let toastTimer;
-function showToast(msg) {
-  const t = document.getElementById('toast');
-  t.textContent = msg;
-  t.classList.add('show');
+function showToast(msg){
+  const t=document.getElementById('toast');
+  t.textContent=msg; t.classList.add('show');
   clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => t.classList.remove('show'), 2500);
+  toastTimer=setTimeout(()=>t.classList.remove('show'),2500);
 }
 
 // ═══════════════════════════════════════════════════════════
 // INIT
 // ═══════════════════════════════════════════════════════════
-(function() {
-  const theme = localStorage.getItem('gi_theme_v3') || 'light';
-  document.documentElement.dataset.theme = theme;
-  loadLocal();
-  renderList();
+(function(){
+  const theme=localStorage.getItem('gi_theme_v3')||'light';
+  document.documentElement.dataset.theme=theme;
+  loadLocal(); renderList();
 })();
 </script>
 </body>
